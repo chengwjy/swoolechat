@@ -12,9 +12,9 @@ use \Swoole\WebSocket\Server;
 class Websocket extends Command
 {
     protected function configure()
-    {
-        // 指令配置
-        $this->setName('websocket')
+    { 
+        // 指令配置 
+        $this->setName('websocket' )
             ->setDescription('the websocket command');
     }
 
