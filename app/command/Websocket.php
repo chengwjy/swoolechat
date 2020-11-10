@@ -14,7 +14,7 @@ class Websocket extends Command
     protected function configure()
     { 
         // 指令配置 
-        $this->setName('websocket' )
+        $this->setName('websocket')
             ->setDescription('the websocket command');
     }
 
