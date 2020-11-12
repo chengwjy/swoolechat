@@ -20,12 +20,17 @@ class Server
             $receive_data = json_decode($frame->data, true);
             // 注册
             if($receive_data['type'] == '1'){
-                $redis->set('fd_'.$frame->fd,$frame->fd);
+                $redis->set('fd_'.$frame->fd, $frame->fd);
+
             }else{
                 $collections = $redis->keys('fd_*');
                 $data = ['type' => '2', 'msg' => $receive_data['msg']];
+              
                 foreach($collections as $v){
-                    $ws->push($v, json_encode($data));
+                    $id = $redis->get($v);
+                    if($id){
+                        $ws->push((int)$id, json_encode($data));
+                    }
                 }
             }
         });
