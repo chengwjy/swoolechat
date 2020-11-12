@@ -17,7 +17,7 @@ class Server
 
         //监听WebSocket消息事件
         $ws->on('message', function ($ws, $frame) use ($redis) {
-            $receive_data = json_decode($frame->data);
+            $receive_data = json_decode($frame->data, true);
             // 注册
             if($receive_data['type'] == '1'){
                 $redis->set('fd_'.$frame->fd,$frame->fd);
